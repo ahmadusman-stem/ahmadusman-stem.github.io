@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- On phones: pretend the layout viewport is ~794px wide (≈210mm at 96dpi),
+     so the browser auto-scales the whole CV to fit instead of zooming in -->
+<meta name="viewport" content="width=794" />
 <title>Ahmad Usman - CV</title>
 <meta name="description" content="CV of Ahmad Usman - Education leader and Olympiad coach from Pakistan." />
 <style>
@@ -31,14 +33,14 @@
     -webkit-font-smoothing: antialiased;
     padding: 24px;
 
-    /* NEW: keep desktop layout on mobile via horizontal scroll */
+    /* Keep desktop layout on mobile by allowing scroll if needed */
     overflow-x: auto;
   }
 
   .page {
     background: var(--paper);
     max-width: 210mm;
-    min-width: 210mm; /* NEW: lock to A4-ish width so columns don't collapse */
+    min-width: 210mm; /* lock to A4-ish width so the 2-column layout never collapses */
     min-height: 297mm;
     margin: 0 auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -346,8 +348,9 @@
     }
   }
 
-  /* IMPORTANT: We REMOVED the mobile @media query.
-     This keeps the two-column layout even on small screens. */
+  /* No mobile media query on purpose:
+     We keep the 2-column layout everywhere,
+     and let the browser scale the whole page initially. */
 </style>
 </head>
 <body>
