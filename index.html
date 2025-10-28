@@ -30,11 +30,15 @@
     line-height: 1.45;
     -webkit-font-smoothing: antialiased;
     padding: 24px;
+
+    /* NEW: keep desktop layout on mobile via horizontal scroll */
+    overflow-x: auto;
   }
 
   .page {
     background: var(--paper);
     max-width: 210mm;
+    min-width: 210mm; /* NEW: lock to A4-ish width so columns don't collapse */
     min-height: 297mm;
     margin: 0 auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -329,10 +333,12 @@
     body {
       background: transparent;
       padding: 0;
+      overflow-x: visible;
     }
     .page {
       box-shadow: none;
       border-radius: 0;
+      margin: 0;
     }
     a {
       color: var(--ink-main) !important;
@@ -340,23 +346,8 @@
     }
   }
 
-  /* MOBILE */
-  @media (max-width: 800px) {
-    .page {
-      grid-template-columns: 1fr;
-      padding: 20px;
-    }
-    header {
-      grid-column: 1 / span 1;
-    }
-    .contact-block {
-      text-align: left;
-    }
-    aside.sidebar {
-      order: 2;
-      margin-top: 16px;
-    }
-  }
+  /* IMPORTANT: We REMOVED the mobile @media query.
+     This keeps the two-column layout even on small screens. */
 </style>
 </head>
 <body>
