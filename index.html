@@ -330,6 +330,11 @@
     font-weight: 500;
   }
 
+  /* Make any block span both columns when needed */
+  .fullwidth {
+    grid-column: 1 / -1;
+  }
+
   /* PRINT */
   @media print {
     body {
@@ -610,27 +615,27 @@
       </div>
     </section>
 
-    <!-- NATIONAL IMPACT -->
-    <section class="main-section">
-      <div class="section-heading-row">
-        <div class="section-accent-bar"></div>
-        <h2 class="section-title">National Olympiad Track</h2>
-      </div>
-
-      <div class="exp-card" style="margin-left:0;">
-        <ul class="bullets">
-          <li>Convinced the Federal Board of Intermediate and Secondary Education (FBISE) to become Pakistan's official body for IOI in <strong>2023</strong> and traveled to Hungary to secure registration. This usually takes longer for a new country.</li>
-          <li>Led Pakistan's first IOI team in <strong>2024</strong> in Egypt. Result: <strong>2 Bronze</strong>, <strong>1 Honourable Mention</strong>. Country rank <strong>44</strong>.</li>
-          <li>Led Pakistan's IOI team again in <strong>2025</strong> in Bolivia. Result: every student, all <strong>4</strong>, won Bronze. Country rank <strong>31</strong>, ahead of France, Italy and Turkey. All four medalists were my direct students.</li>
-          <li>Pan-African Informatics Olympiad <strong>2025</strong>: <strong>4 Gold</strong>, <strong>2 Silver</strong>. Best overall among <strong>15</strong> countries.</li>
-          <li>North African Olympiad in Informatics: <strong>2 Gold</strong>, <strong>4 Silver</strong>. Second overall.</li>
-          <li>APIO <strong>2024</strong> and <strong>2025</strong>: first time Pakistan competed. <strong>2 Silver</strong> medals in <strong>2024</strong> set the tone.</li>
-          <li>Built a domestic performance pipeline. My students have won <strong>20+</strong> national programming competitions, swept Digital Pakistan Speed Programming <strong>2025</strong> including the entire top <strong>3</strong> (PKR <strong>3M</strong> pool), and <strong>6</strong> of Pakistan's Top <strong>10</strong> in Meta Hacker Cup <strong>2024</strong> were my students.</li>
-        </ul>
-      </div>
-    </section>
-
   </main>
+
+  <!-- ===== NATIONAL IMPACT (FULL WIDTH) ===== -->
+  <section class="main-section fullwidth">
+    <div class="section-heading-row">
+      <div class="section-accent-bar"></div>
+      <h2 class="section-title">National Olympiad Track</h2>
+    </div>
+
+    <div class="exp-card" style="margin-left:0;">
+      <ul class="bullets">
+        <li>Convinced the Federal Board of Intermediate and Secondary Education (FBISE) to become Pakistan's official body for IOI in <strong>2023</strong> and traveled to Hungary to secure registration. This usually takes longer for a new country.</li>
+        <li>Led Pakistan's first IOI team in <strong>2024</strong> in Egypt. Result: <strong>2 Bronze</strong>, <strong>1 Honourable Mention</strong>. Country rank <strong>44</strong>.</li>
+        <li>Led Pakistan's IOI team again in <strong>2025</strong> in Bolivia. Result: every student, all <strong>4</strong>, won Bronze. Country rank <strong>31</strong>, ahead of France, Italy and Turkey. All four medalists were my direct students.</li>
+        <li>Pan-African Informatics Olympiad <strong>2025</strong>: <strong>4 Gold</strong>, <strong>2 Silver</strong>. Best overall among <strong>15</strong> countries.</li>
+        <li>North African Olympiad in Informatics: <strong>2 Gold</strong>, <strong>4 Silver</strong>. Second overall.</li>
+        <li>APIO <strong>2024</strong> and <strong>2025</strong>: first time Pakistan competed. <strong>2 Silver</strong> medals in <strong>2024</strong> set the tone.</li>
+        <li>Built a domestic performance pipeline. My students have won <strong>20+</strong> national programming competitions, swept Digital Pakistan Speed Programming <strong>2025</strong> including the entire top <strong>3</strong> (PKR <strong>3M</strong> pool), and <strong>6</strong> of Pakistan's Top <strong>10</strong> in Meta Hacker Cup <strong>2024</strong> were my students.</li>
+      </ul>
+    </div>
+  </section>
 
 </div>
 </body>
