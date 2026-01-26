@@ -1,642 +1,447 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<!-- On phones: pretend the layout viewport is ~794px wide (≈210mm at 96dpi),
-     so the browser auto-scales the whole CV to fit instead of zooming in -->
-<meta name="viewport" content="width=700" />
-<title>Ahmad Usman - CV</title>
-<meta name="description" content="CV of Ahmad Usman - Education leader and Olympiad coach from Pakistan." />
-<style>
-  :root {
-    --page-bg: #f5f6f8;
-    --paper: #ffffff;
-    --sidebar-bg: #faf7f8;
-    --ink-main: #0f172a;
-    --ink-dim: #475569;
-    --accent: #A51C30;
-    --line: #e5e7eb;
-    --radius-card: 12px;
-    --font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Ahmad Usman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a; /* Slate 900 */
+            --secondary: #334155; /* Slate 700 */
+            --accent: #0369a1; /* Sky 700 */
+            --bg-sidebar: #f8fafc;
+            --border-color: #cbd5e1;
+        }
 
-  @page {
-    size: A4;
-    margin: 16mm;
-  }
+        body {
+            background-color: #525252;
+            font-family: 'Inter', sans-serif;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            gap: 20px;
+        }
 
-  body {
-    background: var(--page-bg);
-    color: var(--ink-main);
-    font-family: var(--font-body);
-    line-height: 1.45;
-    -webkit-font-smoothing: antialiased;
-    padding: 24px;
+        /* A4 Paper Configuration */
+        .page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            padding: 10mm 12mm; /* Narrow margins */
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            display: grid;
+            grid-template-columns: 68% 30%; /* Main Content vs Sidebar */
+            gap: 2%;
+            overflow: hidden; /* Prevent spillover */
+        }
 
-    /* Keep desktop layout on mobile by allowing scroll if needed */
-    overflow-x: auto;
-  }
+        /* Print Settings */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+                gap: 0;
+                display: block;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+                height: 297mm; /* Force A4 height */
+                width: 100%;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            .no-print { display: none !important; }
+        }
 
-  .page {
-    background: var(--paper);
-    max-width: 210mm;
-    min-width: 210mm; /* lock to A4-ish width so the 2-column layout never collapses */
-    min-height: 297mm;
-    margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border-radius: var(--radius-card);
-    display: grid;
-    grid-template-columns: 260px 1fr;
-    column-gap: 24px;
-    padding: 32px 32px 40px;
-    box-sizing: border-box;
-  }
+        /* Typography & Components */
+        h1 { color: var(--primary); letter-spacing: -0.02em; }
+        h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 3px; margin-bottom: 10px; margin-top: 15px; }
+        h3 { color: var(--primary); font-weight: 700; font-size: 0.9rem; }
+        
+        .role-meta { color: #64748b; font-size: 0.75rem; font-weight: 500; text-align: right; white-space: nowrap; }
+        .role-subtitle { color: var(--secondary); font-size: 0.8rem; font-weight: 600; margin-bottom: 2px; }
+        .role-desc { font-size: 0.75rem; color: #475569; margin-bottom: 4px; font-style: italic; line-height: 1.3; }
 
-  /* ===== HEADER ===== */
-  header {
-    grid-column: 1 / span 2;
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 16px;
-    margin-bottom: 24px;
-  }
+        p, li { font-size: 0.8rem; line-height: 1.45; color: #334155; text-align: justify; }
+        
+        /* Bullet Lists */
+        .compact-list { list-style: none; padding: 0; }
+        .compact-list li { position: relative; padding-left: 10px; margin-bottom: 2px; }
+        .compact-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
-  .top-header {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 16px;
-    align-items: start;
-  }
+        /* Sidebar Styling */
+        .sidebar { background-color: var(--bg-sidebar); border-radius: 8px; padding: 10px; height: 100%; font-size: 0.75rem; }
+        .sidebar-section { margin-bottom: 15px; }
+        .sidebar-title { color: var(--primary); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 2px; margin-bottom: 8px; font-size: 0.75rem; }
+        
+        /* Tags */
+        .tag { display: inline-block; background: white; border: 1px solid #e2e8f0; padding: 2px 5px; border-radius: 4px; font-size: 0.65rem; margin-right: 3px; margin-bottom: 3px; font-weight: 600; color: #475569; }
 
-  .id-block h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--ink-main);
-    margin: 0 0 4px 0;
-    line-height: 1.2;
-  }
+        /* Highlight Box */
+        .highlight-box { background: #f0f9ff; border-left: 3px solid var(--accent); padding: 6px 8px; margin: 6px 0; border-radius: 0 4px 4px 0; }
+        .highlight-text { font-size: 0.75rem; color: #0c4a6e; font-weight: 500; }
 
-  .headline {
-    font-size: 0.9rem;
-    color: var(--accent);
-    font-weight: 500;
-    line-height: 1.3;
-    max-width: 480px;
-  }
-
-  .contact-block {
-    font-size: 0.8rem;
-    color: var(--ink-dim);
-    line-height: 1.5;
-    text-align: right;
-  }
-
-  .contact-block div strong {
-    color: var(--ink-main);
-    font-weight: 600;
-  }
-
-  .contact-block a {
-    color: var(--ink-dim);
-    text-decoration: none;
-  }
-  .contact-block a:hover {
-    color: var(--accent);
-  }
-
-  /* ===== SIDEBAR ===== */
-  aside.sidebar {
-    background: var(--sidebar-bg);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-    padding: 16px 16px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-self: start;
-  }
-
-  .side-section + .side-section {
-    border-top: 1px solid var(--line);
-    padding-top: 16px;
-  }
-
-  .side-heading {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    margin: 0 0 8px;
-  }
-
-  .kv-line {
-    font-size: 0.8rem;
-    line-height: 1.45;
-    color: var(--ink-main);
-    margin-bottom: 6px;
-  }
-  .kv-line .kv-label {
-    font-weight: 600;
-    color: var(--ink-main);
-  }
-
-  ul.side-bullets {
-    margin: 0;
-    padding-left: 16px;
-  }
-  ul.side-bullets li {
-    font-size: 0.8rem;
-    color: var(--ink-main);
-    margin-bottom: 4px;
-  }
-
-  .ref-card {
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-  }
-  .ref-name {
-    font-size: 0.8rem;
-    font-weight: 600;
-    margin: 0;
-    color: var(--ink-main);
-  }
-  .ref-role {
-    font-size: 0.75rem;
-    color: var(--ink-dim);
-    margin: 0 0 4px;
-  }
-  .ref-email {
-    font-size: 0.75rem;
-    color: var(--ink-main);
-    word-break: break-all;
-    margin: 0;
-  }
-
-  /* ===== MAIN COLUMN ===== */
-  main.main {
-    min-width: 0;
-  }
-
-  section.main-section {
-    margin-bottom: 24px;
-  }
-
-  .section-heading-row {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
-
-  .section-accent-bar {
-    width: 4px;
-    height: 16px;
-    border-radius: 2px;
-    background: var(--accent);
-  }
-
-  .section-title {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    margin: 0;
-    line-height: 1.2;
-  }
-
-  .para {
-    font-size: 0.8rem;
-    color: var(--ink-main);
-    line-height: 1.5;
-    margin: 0 0 8px;
-  }
-
-  .subline {
-    font-size: 0.75rem;
-    color: var(--ink-dim);
-    margin: 0 0 10px;
-    line-height: 1.4;
-  }
-
-  /* ===== EXPERIENCE TIMELINE ===== */
-  .timeline {
-    position: relative;
-    padding-left: 20px;
-  }
-
-  .timeline::before {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 4px;
-    bottom: 0;
-    width: 2px;
-    background: var(--line);
-  }
-
-  .exp-card {
-    position: relative;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-card);
-    padding: 12px 16px 14px;
-    margin-bottom: 12px;
-    background: var(--paper);
-  }
-
-  .exp-card::before {
-    content: "";
-    position: absolute;
-    left: -14px;
-    top: 14px;
-    width: 10px;
-    height: 10px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px var(--paper);
-    border: 2px solid var(--accent);
-  }
-
-  .role-head {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    line-height: 1.3;
-    margin-bottom: 6px;
-  }
-
-  .role-main {
-    min-width: 0;
-  }
-
-  .role-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--ink-main);
-  }
-
-  .role-org {
-    font-size: 0.9rem;
-    color: var(--ink-main);
-    font-weight: 500;
-  }
-
-  .role-meta {
-    font-size: 0.75rem;
-    color: var(--ink-dim);
-    text-align: right;
-    line-height: 1.3;
-  }
-
-  .role-meta .role-dates {
-    display: block;
-  }
-
-  .role-meta .role-location {
-    display: block;
-    font-size: 0.7rem;
-    color: var(--ink-dim);
-  }
-
-  ul.bullets {
-    margin: 0;
-    padding-left: 18px;
-  }
-
-  ul.bullets li {
-    font-size: 0.8rem;
-    color: var(--ink-main);
-    margin-bottom: 4px;
-    line-height: 1.45;
-  }
-
-  .metric-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 8px;
-  }
-
-  .metric-tag {
-    background: rgba(165,28,48,0.08);
-    border: 1px solid rgba(165,28,48,0.28);
-    color: var(--accent);
-    border-radius: 6px;
-    font-size: 0.7rem;
-    line-height: 1.2;
-    padding: 3px 6px;
-    font-weight: 500;
-  }
-
-  /* Make any block span both columns when needed */
-  .fullwidth {
-    grid-column: 1 / -1;
-  }
-
-  /* PRINT */
-  @media print {
-    body {
-      background: transparent;
-      padding: 0;
-      overflow-x: visible;
-    }
-    .page {
-      box-shadow: none;
-      border-radius: 0;
-      margin: 0;
-    }
-    a {
-      color: var(--ink-main) !important;
-      text-decoration: none !important;
-    }
-  }
-
-  /* No mobile media query on purpose:
-     We keep the 2-column layout everywhere,
-     and let the browser scale the whole page initially. */
-</style>
+        /* Header Contact */
+        .contact-row i { width: 14px; text-align: center; color: var(--accent); margin-right: 4px; }
+    </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- ===== HEADER ===== -->
-  <header>
-    <div class="top-header">
-      <div class="id-block">
-        <h1>Ahmad Usman</h1>
-        <div class="headline">
-          Education leader in gifted STEM and national Olympiad coach for Pakistan. I build systems so high potential students can reach world level.
-        </div>
-      </div>
-      <div class="contact-block">
-        <div><strong>Email:</strong> <a href="mailto:mail.ahmadusman@gmail.com">mail.ahmadusman@gmail.com</a></div>
-        <div><strong>Phone:</strong> +92&nbsp;321&nbsp;6400328</div>
-        <div><strong>LinkedIn:</strong> linkedin.com/in/ahmad-usman-5411981b7</div>
-        <div><strong>Location:</strong> Lahore, Pakistan</div>
-        <div><strong>Nationality:</strong> Pakistani</div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar">
-    <!-- SNAPSHOT -->
-    <div class="side-section">
-      <h2 class="side-heading">Snapshot</h2>
-
-      <div class="kv-line"><span class="kv-label">Date of birth:</span> <strong>16 June 1994</strong></div>
-      <div class="kv-line"><span class="kv-label">Citizenship:</span> Pakistani</div>
-      <div class="kv-line"><span class="kv-label">Languages:</span> Urdu (native), English (fluent), Arabic (basic)</div>
-      <div class="kv-line"><span class="kv-label">IELTS:</span> <strong>7.5</strong> </div>
-      <div class="kv-line"><span class="kv-label">Relocation:</span> Open</div>
+    <!-- Floating Print Button -->
+    <div class="fixed bottom-8 right-8 no-print z-50">
+        <button onclick="window.print()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 px-6 rounded-full shadow-2xl flex items-center gap-2 transition-transform transform hover:scale-105">
+            <i class="fas fa-print"></i> Print CV (2 Pages)
+        </button>
     </div>
 
-    <!-- PROGRAMS BUILT -->
-    <div class="side-section">
-      <h2 class="side-heading">Programs Built</h2>
+    <!-- ================= PAGE 1 ================= -->
+    <div class="page">
+        <!-- Main Column Page 1 -->
+        <main>
+            <!-- Header -->
+            <header class="mb-5 border-b pb-4 border-slate-200">
+                <h1 class="text-3xl font-extrabold text-slate-900 uppercase tracking-tight">Ahmad Usman</h1>
+                <p class="text-sm text-sky-700 font-bold tracking-wide mt-1">Education Systems Architect | National Olympiad Coach | Computer Scientist</p>
+                <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-slate-600 font-medium">
+                    <span class="contact-row"><i class="fas fa-envelope"></i> mail.ahmadusman@gmail.com</span>
+                    <span class="contact-row"><i class="fas fa-phone"></i> +92 321 6400328</span>
+                    <span class="contact-row"><i class="fas fa-map-marker-alt"></i> Lahore, Pakistan</span>
+                    <span class="contact-row"><i class="fab fa-linkedin"></i> linkedin.com/in/ahmad-usman</span>
+                </div>
+            </header>
 
-      <div class="kv-line">
-        <span class="kv-label">Virtual STEM School:</span>
-        National online program for gifted Grade 6 and Grade 7 students. Entry test <strong>50,000+</strong>. Enrolled ~<strong>1,500</strong> from <strong>100+</strong> cities. About <strong>1,900</strong> Chromebooks placed so they could attend.
-      </div>
+            <!-- Summary -->
+            <section class="mb-4">
+                <h2 style="margin-top:0;">Executive Profile</h2>
+                <p>
+                    <strong>Education leader and policy advisor</strong> specializing in identifying and nurturing high-potential students from low-income backgrounds. Architect of Pakistan’s International Olympiad in Informatics (IOI) pipeline, leading the national team to a <strong>historic Global Rank of 31 in 2025</strong> (outperforming France & Italy). Currently advising the Government of Punjab on the "Schools for Exceptionally Talented Students" (SETS) initiative. Expert in scaling personalized learning systems (50,000+ students) using algorithmic curricula and data-driven policy frameworks.
+                </p>
+            </section>
 
-      <div class="kv-line">
-        <span class="kv-label">Weekend Programming and Olympiad Math School:</span>
-        Lahore based intensive school for exceptional students. Acceptance rate under <strong>1 percent</strong>.
-      </div>
+            <!-- Experience Section 1 -->
+            <section>
+                <h2>Professional Experience</h2>
 
-      <div class="kv-line">
-        <span class="kv-label">Partner Schools Program:</span>
-        Worked with <strong>300+</strong> schools to train teachers in math and computer science and to embed Khan Academy and Khanmigo into lessons.
-      </div>
-    </div>
+                <!-- Role 1: Govt -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Government of Punjab / PEIMA</h3>
+                        <span class="role-meta">Oct 2025 – Present</span>
+                    </div>
+                    <div class="role-subtitle">Focal Person & Advisor (SETS Project)</div>
+                    <ul class="compact-list">
+                        <li><strong>Strategic Leadership:</strong> Spearheading the SETS initiative to establish Punjab's first magnet schools for gifted students, modeled after Iran’s NODET and Singapore’s GEP.</li>
+                        <li><strong>Policy Formulation:</strong> Serving on the steering committee to draft the "National Framework for Gifted Education," defining student identification metrics for a province of 120 million.</li>
+                        <li><strong>Diplomacy:</strong> Orchestrated a high-level government delegation to Iran (Nov 2025) to adapt their gifted education infrastructure for Pakistan.</li>
+                    </ul>
+                </div>
 
-    <!-- CORE SKILLS -->
-    <div class="side-section">
-      <h2 class="side-heading">Core Skills</h2>
-      <ul class="side-bullets">
-        <li>High performance curriculum design in math, computer science and physics</li>
-        <li>Olympiad team selection, training and coaching (IOI, APIO, PAIO)</li>
-        <li>Teacher training and mentoring across <strong>300+</strong> partner schools</li>
-        <li>Program design for gifted learners in low resource settings</li>
-        <li>National testing, placement and performance pipelines</li>
-        <li>Parent alignment and study discipline culture</li>
-      </ul>
-    </div>
+                <!-- Role 2: SundarSTEM -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>SundarSTEM School</h3>
+                        <span class="role-meta">Apr 2021 – Present</span>
+                    </div>
+                    <div class="role-subtitle">Vice Principal & Head of Computer Science</div>
+                    <div class="role-desc">Pakistan’s premier residential school for gifted students from low-income backgrounds.</div>
+                    <ul class="compact-list">
+                        <li><strong>Olympiad Architecture:</strong> Built Pakistan’s IOI pipeline from zero. <strong>Every student representing Pakistan at the IOI to date has been my direct student.</strong></li>
+                        <li><strong>Global Impact:</strong> Coached the national team to <strong>4 Bronze Medals (100% win rate)</strong> at IOI 2025 (Bolivia) and 2 Bronze at IOI 2024 (Egypt).</li>
+                        <li><strong>Curriculum Design:</strong> Developed advanced CS curricula (Graph Theory, DP). My O-Level Math class achieved <strong>100% A* grades</strong>; Physics students achieved only A/A*.</li>
+                        <li><strong>International Collaboration:</strong> Recruited world-class volunteer trainers, including faculty from the <strong>University of Oxford</strong>.</li>
+                        <li><strong>Equity:</strong> Placed students from households earning <£100/mo into top US/UK universities on full scholarships.</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <div class="highlight-text">
+                            <i class="fas fa-trophy mr-1"></i> <strong>Key Metric:</strong> IOI 2025 Rank 31 Globally | 4 Medals | Beat Germany, Italy, Turkey.
+                        </div>
+                    </div>
+                </div>
 
-    <!-- TECHNICAL -->
-    <div class="side-section">
-      <h2 class="side-heading">Technical</h2>
-      <ul class="side-bullets">
-        <li>Programming: Python, C++, Java, SQL, R, MATLAB</li>
-        <li>Platforms: Google Workspace, Khan Academy, Khanmigo</li>
-        <li>LMS and analytics for student progress tracking</li>
-        <li>Competition style problem setting and review</li>
-      </ul>
-    </div>
+                <!-- Role 3: VSS -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Virtual STEM School (VSS)</h3>
+                        <span class="role-meta">Jun 2023 – Dec 2024</span>
+                    </div>
+                    <div class="role-subtitle">Founding Head</div>
+                    <ul class="compact-list">
+                        <li><strong>Massive Scale:</strong> Founded Pakistan’s first online accelerator for gifted Grades 6–7. Managed entry testing for <strong>50,000+ applicants</strong>, selecting top 1,500.</li>
+                        <li><strong>Digital Equity:</strong> Secured funding to distribute <strong>1,900 Chromebooks</strong> to students in remote villages.</li>
+                        <li><strong>Partner Schools Program:</strong> Trained teachers in 300+ schools to integrate Khan Academy/Khanmigo into daily lessons.</li>
+                        <li><strong>Weekend School:</strong> Launched an intensive weekend program for the top 1% of math talent in Lahore.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
 
-    <!-- EDUCATION -->
-    <div class="side-section">
-      <h2 class="side-heading">Education</h2>
-      <div class="kv-line"><span class="kv-label">BS Computer Science</span> — <strong>2018</strong></div>
-      <div class="kv-line">Lahore University of Management Sciences (LUMS)</div>
-      <div class="kv-line" style="color:var(--ink-dim); font-size:0.75rem; line-height:1.4;">
-        Focus on algorithms, data structures, machine learning and educational technology.
-      </div>
-    </div>
-
-    <!-- REFERENCES -->
-    <div class="side-section">
-      <h2 class="side-heading">References</h2>
-
-      <div class="ref-card">
-        <p class="ref-name">Muhammad Ishaq</p>
-        <p class="ref-role">Principal, SundarSTEM School</p>
-        <p class="ref-email">muhammad.ishaq@sundarstem.edu.pk</p>
-      </div>
-
-      <div class="ref-card">
-        <p class="ref-name">Dr. Tehmina Aslam Ranjha</p>
-        <p class="ref-role">Administrator, SundarSTEM School</p>
-        <p class="ref-email">tehmina@sundarstem.edu.pk</p>
-      </div>
-
-      <div class="ref-card">
-        <p class="ref-name">Zeeshan Abbasi</p>
-        <p class="ref-role">Deputy Director, Pakistan STEM School</p>
-        <p class="ref-email">zeeshan.abbasi@baitussalam.org</p>
-      </div>
-    </div>
-
-  </aside>
-
-  <!-- ===== MAIN COLUMN ===== -->
-  <main class="main">
-
-    <!-- PROFILE / IMPACT STATEMENT -->
-    <section class="main-section">
-      <div class="section-heading-row">
-        <div class="section-accent-bar"></div>
-        <h2 class="section-title">Profile</h2>
-      </div>
-
-      <p class="para">
-        I work with very bright students and the teachers around them. My focus is to take talent from anywhere in Pakistan, including low income backgrounds, and train it to international standard in problem solving, algorithms and mathematical thinking.
-      </p>
-
-      <p class="para">
-        As Vice Principal and Head of Computer Science at SundarSTEM School I lead curriculum, mentor teachers, and run Pakistan's informatics Olympiad pipeline. I helped register Pakistan for the International Olympiad in Informatics in <strong>2023</strong> and then coached the first national teams to medals in <strong>2024</strong> and <strong>2025</strong>.
-      </p>
-
-      <p class="para">
-        I also founded the Virtual STEM School for Grades 6 and 7. That program tested more than <strong>50,000</strong> students nationwide, enrolled about <strong>1,500</strong> across <strong>100+</strong> cities and provided about <strong>1,900</strong> Chromebooks so deserving students could study advanced math and computer science.
-      </p>
-
-      <p class="subline">
-        Open to relocation. I want to keep building serious gifted education and teacher capacity at scale.
-      </p>
-    </section>
-
-    <!-- EXPERIENCE (TIMELINE) -->
-    <section class="main-section">
-      <div class="section-heading-row">
-        <div class="section-accent-bar"></div>
-        <h2 class="section-title">Experience</h2>
-      </div>
-
-      <div class="timeline">
-
-        <div class="exp-card">
-          <div class="role-head">
-            <div class="role-main">
-              <div class="role-title">Vice Principal and Head of Computer Science</div>
-              <div class="role-org">SundarSTEM School</div>
+        <!-- Sidebar Page 1 -->
+        <aside class="sidebar">
+            
+            <!-- Languages (Moved to Page 1) -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Languages</h3>
+                <ul class="text-xs text-slate-700">
+                    <li class="mb-1"><span class="font-semibold">Urdu:</span> Native</li>
+                    <li class="mb-1"><span class="font-semibold">English:</span> Fluent (IELTS 7.5)</li>
+                    <li><span class="font-semibold">Arabic:</span> Basic</li>
+                </ul>
             </div>
-            <div class="role-meta">
-              <span class="role-dates">Apr <strong>2021</strong> - Present</span>
-              <span class="role-location">Lahore, Pakistan</span>
+
+            <!-- Skills -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Core Skills</h3>
+                <div class="mb-2">
+                    <div class="font-semibold text-slate-700 mb-1">Pedagogy & Policy</div>
+                    <div class="flex flex-wrap">
+                        <span class="tag">Gifted Education</span>
+                        <span class="tag">Curriculum Design</span>
+                        <span class="tag">National Scaling</span>
+                        <span class="tag">Teacher Training</span>
+                        <span class="tag">Policy Formation</span>
+                        <span class="tag">Instructional Design</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-semibold text-slate-700 mb-1">Technical (CS)</div>
+                    <div class="flex flex-wrap">
+                        <span class="tag">Python</span>
+                        <span class="tag">C++ (Olympiad)</span>
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Data Structures</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Git/GitHub</span>
+                        <span class="tag">Linux/Bash</span>
+                        <span class="tag">LaTeX</span>
+                    </div>
+                </div>
             </div>
-          </div>
 
-          <ul class="bullets">
-            <li>Lead academic strategy for a selective STEM boarding school (Grades 8 to 12) in math, computer science and problem solving.</li>
-            <li>Mentor faculty and build the high performance curriculum in algorithms, physics and mathematical thinking.</li>
-            <li>Created and now run Pakistan's informatics Olympiad pipeline for IOI, APIO, PAIO and the North African Olympiad in Informatics.</li>
-            <li>Coach and select Pakistan's IOI teams. In <strong>2025</strong> all <strong>4</strong> IOI team members were my direct students.</li>
-            <li>Advise the Federal Board of Intermediate and Secondary Education (FBISE) on computational thinking and Olympiad style assessment.</li>
-            <li>Delivered consistent classroom outcomes. My O Level Math class achieved <strong>100 percent A*</strong>. Physics students achieved only <strong>A / A*</strong>.</li>
-          </ul>
-
-          <div class="metric-row">
-            <div class="metric-tag">IOI <strong>2024</strong>: <strong>2 Bronze</strong>, <strong>1 Honourable Mention</strong></div>
-            <div class="metric-tag">IOI <strong>2025</strong>: <strong>4 Bronze</strong> medals</div>
-            <div class="metric-tag"><strong>Rank 31</strong> globally in 2025</div>
-          </div>
-        </div>
-
-        <div class="exp-card">
-          <div class="role-head">
-            <div class="role-main">
-              <div class="role-title">Head, Virtual STEM School (VSS)</div>
-              <div class="role-org">SundarSTEM</div>
+            <!-- Honors -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Honors & Impact</h3>
+                <ul class="list-none p-0 text-xs space-y-2 text-slate-700">
+                    <li>
+                        <strong class="text-accent block">Team Leader, IOI 2025</strong>
+                        Led Pakistan to Rank 31 globally (4 Bronze Medals).
+                    </li>
+                    <li>
+                        <strong class="text-accent block">Deputy Leader, IOI 2024</strong>
+                        Pakistan's debut participation (Rank 44).
+                    </li>
+                    <li>
+                        <strong class="text-accent block">Pan-African IO 2025</strong>
+                        Best Overall Team: 4 Gold, 2 Silver.
+                    </li>
+                    <li>
+                        <strong class="text-accent block">Meta Hacker Cup 2024</strong>
+                        6 of Pakistan's Top 10 were my students.
+                    </li>
+                </ul>
             </div>
-            <div class="role-meta">
-              <span class="role-dates">Jun <strong>2023</strong> - Dec <strong>2024</strong></span>
-              <span class="role-location">Pakistan (national)</span>
+            
+             <!-- Snapshot -->
+             <div class="sidebar-section">
+                <h3 class="sidebar-title">Snapshot</h3>
+                <div class="text-xs text-slate-700 space-y-1">
+                    <div><strong>DOB:</strong> 16 June 1994</div>
+                    <div><strong>Citizenship:</strong> Pakistani</div>
+                    <div><strong>Relocation:</strong> Open</div>
+                </div>
             </div>
-          </div>
-
-          <ul class="bullets">
-            <li>Founded Pakistan's first national online program for gifted Grade 6 and Grade 7 learners. Daily live classes in math, computer science and English.</li>
-            <li>Designed and ran the national entry test taken by more than <strong>50,000</strong> students. Selected about <strong>1,500</strong> high performers from <strong>100+</strong> cities.</li>
-            <li>Secured and distributed about <strong>1,900</strong> Chromebooks so students from households around <strong>£150</strong> a month income could still join advanced instruction.</li>
-            <li>Built routines and handover documents so daily academic operations could continue without my direct presence.</li>
-            <li>Launched a Weekend Programming and Olympiad Math School in Lahore for the most exceptional students with an acceptance rate under <strong>1 percent</strong>.</li>
-            <li>Started a Partner Schools Program. Worked with <strong>300+</strong> schools to train their teachers in math and computer science and to integrate Khan Academy and Khanmigo into daily teaching.</li>
-          </ul>
-
-          <div class="metric-row">
-            <div class="metric-tag"><strong>50,000+</strong> tested</div>
-            <div class="metric-tag"><strong>1,500</strong> enrolled</div>
-            <div class="metric-tag"><strong>100+</strong> cities</div>
-            <div class="metric-tag"><strong>300+</strong> schools</div>
-            <div class="metric-tag"><strong>1,900</strong> devices</div>
-          </div>
-        </div>
-
-        <div class="exp-card">
-          <div class="role-head">
-            <div class="role-main">
-              <div class="role-title">Head, Academic Advisory Council (Pro Bono)</div>
-              <div class="role-org">Pakistan STEM Schools</div>
-            </div>
-            <div class="role-meta">
-              <span class="role-dates"><strong>2024</strong> - Present</span>
-              <span class="role-location">National</span>
-            </div>
-          </div>
-
-          <ul class="bullets">
-            <li>Advise on curriculum, teacher quality and academic standards for a welfare backed STEM school network.</li>
-            <li>Support hiring and mentoring of math and computer science teachers. Align curriculum with FBISE while keeping deep problem solving central.</li>
-          </ul>
-
-          <div class="metric-row">
-            <div class="metric-tag">Teacher capacity building</div>
-            <div class="metric-tag">System design</div>
-          </div>
-        </div>
-
-        <div class="exp-card">
-          <div class="role-head">
-            <div class="role-main">
-              <div class="role-title">Head of Computer Science</div>
-              <div class="role-org">Baitussalam Educational Complex</div>
-            </div>
-            <div class="role-meta">
-              <span class="role-dates">Jun <strong>2020</strong> - Mar <strong>2021</strong></span>
-            </div>
-          </div>
-
-          <ul class="bullets">
-            <li>Introduced coding and robotics to students who had never had structured computer science before.</li>
-            <li>Built the first full computer science curriculum for the school and trained teachers to deliver it.</li>
-            <li>Guided students into contests and project work. This formed the belief I still carry that talent is everywhere if you create the right environment.</li>
-          </ul>
-
-          <div class="metric-row">
-            <div class="metric-tag">First CS curriculum</div>
-            <div class="metric-tag">Teacher training role</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===== NATIONAL IMPACT (FULL WIDTH) ===== -->
-  <section class="main-section fullwidth">
-    <div class="section-heading-row">
-      <div class="section-accent-bar"></div>
-      <h2 class="section-title">National Olympiad Track</h2>
+        </aside>
     </div>
 
-    <div class="exp-card" style="margin-left:0;">
-      <ul class="bullets">
-        <li>Convinced the Federal Board of Intermediate and Secondary Education (FBISE) to become Pakistan's official body for IOI in <strong>2023</strong> and traveled to Hungary to secure registration. This usually takes longer for a new country.</li>
-        <li>Led Pakistan's first IOI team in <strong>2024</strong> in Egypt. Result: <strong>2 Bronze</strong>, <strong>1 Honourable Mention</strong>. Country rank <strong>44</strong>.</li>
-        <li>Led Pakistan's IOI team again in <strong>2025</strong> in Bolivia. Result: every student, all <strong>4</strong>, won Bronze. Country rank <strong>31</strong>, ahead of France, Italy and Turkey. All four medalists were my direct students.</li>
-        <li>Pan-African Informatics Olympiad <strong>2025</strong>: <strong>4 Gold</strong>, <strong>2 Silver</strong>. Best overall among <strong>15</strong> countries.</li>
-        <li>North African Olympiad in Informatics: <strong>2 Gold</strong>, <strong>4 Silver</strong>. Second overall.</li>
-        <li>APIO <strong>2024</strong> and <strong>2025</strong>: first time Pakistan competed. <strong>2 Silver</strong> medals in <strong>2024</strong> set the tone.</li>
-        <li>Built a domestic performance pipeline. My students have won <strong>20+</strong> national programming competitions, swept Digital Pakistan Speed Programming <strong>2025</strong> including the entire top <strong>3</strong> (PKR <strong>3M</strong> pool), and <strong>6</strong> of Pakistan's Top <strong>10</strong> in Meta Hacker Cup <strong>2024</strong> were my students.</li>
-      </ul>
-    </div>
-  </section>
+    <!-- ================= PAGE 2 ================= -->
+    <div class="page">
+        <!-- Main Column Page 2 -->
+        <main>
+            <!-- Experience Continued -->
+            <section class="mb-4">
+                <h2 style="margin-top:0;">Experience (Continued)</h2>
 
-</div>
+                <!-- Role 4: FBISE -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Federal Board (FBISE)</h3>
+                        <span class="role-meta">2023 – Present</span>
+                    </div>
+                    <div class="role-subtitle">Technical Advisor, Pakistan Olympiad in Informatics</div>
+                    <ul class="compact-list">
+                        <li><strong>Institutional Reform:</strong> Successfully lobbied FBISE to become the official IOI body. Secured Pakistan's official registration at the IOI General Assembly in Hungary (2023).</li>
+                        <li><strong>Regional Dominance:</strong> Led delegations to record victories at Pan-African (Best Overall) and North African Olympiads (2nd Overall).</li>
+                    </ul>
+                </div>
+
+                <!-- Role 5: Pak STEM -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Pakistan STEM Schools</h3>
+                        <span class="role-meta">2024 – Present</span>
+                    </div>
+                    <div class="role-subtitle">Head, Academic Advisory Council (Pro Bono)</div>
+                    <ul class="compact-list">
+                        <li>Advise on curriculum and teacher quality for a welfare-backed school network expanding to Karachi, Lahore, and Islamabad.</li>
+                        <li>Aligning curricula with federal standards while maintaining deep problem-solving rigor.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 6: Baitussalam -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Baitussalam Educational Complex</h3>
+                        <span class="role-meta">Jun 2020 – Mar 2021</span>
+                    </div>
+                    <div class="role-subtitle">Head of Computer Science</div>
+                    <ul class="compact-list">
+                        <li>Transformed CS education at a welfare school, introducing the first structured coding/robotics curriculum for underprivileged students.</li>
+                        <li>Guided students with zero background to their first competitive programming contests.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 7: Curiosity Club -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Curiosity Club</h3>
+                        <span class="role-meta">Jan 2019 – Mar 2020</span>
+                    </div>
+                    <div class="role-subtitle">Co-Founder</div>
+                    <ul class="compact-list">
+                        <li>Co-founded an after-school robotics institute teaching programming and robotics to students from Grades 6 to 10.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 8: ITU -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline">
+                        <h3>Information Technology University (ITU)</h3>
+                        <span class="role-meta">Sep 2018 – Dec 2018</span>
+                    </div>
+                    <div class="role-subtitle">Research Associate</div>
+                    <ul class="compact-list">
+                        <li>Conducted research on NLP/Digital Humanities. Teaching Assistant for undergraduate Urdu courses.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Research & Projects -->
+            <section>
+                <h2>Selected Academic Projects</h2>
+                
+                <div class="mb-3">
+                    <div class="font-bold text-sm text-slate-800">"Detecting Covert Cryptocurrency Mining via Encrypted Network Traffic"</div>
+                    <div class="text-xs text-slate-600 italic mb-1">Undergraduate Thesis (Grade: A-)</div>
+                    <p class="text-xs">
+                        Proposed a network-centric methodology using Deep Learning to identify unauthorized crypto-mining (Monero/Ripple) by analyzing encrypted traffic patterns. Achieved <strong>88.93% accuracy</strong> using a Neural Network classifier.
+                    </p>
+                </div>
+
+                <div class="mb-3">
+                    <div class="font-bold text-sm text-slate-800">"The Challenges of Cyber Security in Pakistan"</div>
+                    <p class="text-xs">
+                        Authored a comprehensive policy report highlighting vulnerabilities in national infrastructure and advocating for stronger cyber-warfare defense mechanisms.
+                    </p>
+                </div>
+
+                <div class="mb-0">
+                    <div class="font-bold text-sm text-slate-800">"Peoples' Choice: Player Popularity via Twitter Sentiment"</div>
+                    <p class="text-xs">
+                        Conducted sentiment analysis on 6.6 million tweets from the 2015 Cricket World Cup. Identified linguistic bias in standard NLP tools when processing Roman Urdu/Hindi.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar Page 2 -->
+        <aside class="sidebar">
+             <!-- Education (Moved to Page 2 Sidebar) -->
+             <div class="sidebar-section">
+                <h3 class="sidebar-title">Education</h3>
+                <div class="mb-2">
+                    <div class="font-bold text-slate-800">BS Computer Science</div>
+                    <div class="text-xs text-slate-600">LUMS, Pakistan</div>
+                    <div class="text-xs text-slate-500 italic">2014 – 2018</div>
+                    <div class="text-xs mt-1">
+                        <strong>CGPA:</strong> 3.32 / 4.0<br>
+                        <strong>Thesis:</strong> Deep Learning for Network Security (Grade: A-).
+                    </div>
+                </div>
+                <div>
+                    <div class="font-bold text-slate-800">A-Levels</div>
+                    <div class="text-xs text-slate-600">Beaconhouse System</div>
+                    <div class="text-xs text-slate-500 italic">2014</div>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">References</h3>
+                
+                <div class="mb-3">
+                    <p class="font-bold text-xs text-slate-900">Dr. Amir Goharshady</p>
+                    <p class="text-[10px] text-slate-600">Associate Professor</p>
+                    <p class="text-[10px] text-slate-600 italic">University of Oxford</p>
+                    <a href="mailto:amir.goharshady@cs.ox.ac.uk" class="text-[10px] text-sky-700 hover:underline break-words">amir.goharshady@cs.ox.ac.uk</a>
+                </div>
+
+                <div class="mb-3">
+                    <p class="font-bold text-xs text-slate-900">Muhammad Ishaq</p>
+                    <p class="text-[10px] text-slate-600">Principal</p>
+                    <p class="text-[10px] text-slate-600 italic">SundarSTEM School</p>
+                    <a href="mailto:muhammad.ishaq@sundarstem.edu.pk" class="text-[10px] text-sky-700 hover:underline break-words">muhammad.ishaq@sundarstem.edu.pk</a>
+                </div>
+
+                <div class="mb-3">
+                    <p class="font-bold text-xs text-slate-900">Dr. Tehmina Aslam Ranjha</p>
+                    <p class="text-[10px] text-slate-600">Administrator</p>
+                    <p class="text-[10px] text-slate-600 italic">SundarSTEM School</p>
+                    <a href="mailto:tehmina@sundarstem.edu.pk" class="text-[10px] text-sky-700 hover:underline break-words">tehmina@sundarstem.edu.pk</a>
+                </div>
+
+                <div class="mb-3">
+                    <p class="font-bold text-xs text-slate-900">Zeeshan Abbasi</p>
+                    <p class="text-[10px] text-slate-600">Deputy Director</p>
+                    <p class="text-[10px] text-slate-600 italic">Pakistan STEM School</p>
+                    <a href="mailto:zeeshan.abbasi@baitussalam.org" class="text-[10px] text-sky-700 hover:underline break-words">zeeshan.abbasi@baitussalam.org</a>
+                </div>
+            </div>
+            
+            <!-- Tools -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Tools</h3>
+                <div class="flex flex-wrap">
+                    <span class="tag">Khan Academy</span>
+                    <span class="tag">Khanmigo</span>
+                    <span class="tag">LMS Analytics</span>
+                    <span class="tag">Google Workspace</span>
+                    <span class="tag">Desmos</span>
+                    <span class="tag">GeoGebra</span>
+                    <span class="tag">Docker</span>
+                </div>
+            </div>
+
+            <!-- Hobbies -->
+             <div class="sidebar-section">
+                <h3 class="sidebar-title">Hobbies</h3>
+                <div class="text-xs text-slate-700 space-y-1">
+                    <div><i class="fas fa-plane text-accent mr-1"></i> <strong>Travel:</strong> 13 Countries, 120+ Cities.</div>
+                    <div><i class="fas fa-bullseye text-accent mr-1"></i> <strong>Archery:</strong> Training to go pro.</div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
 </body>
 </html>
