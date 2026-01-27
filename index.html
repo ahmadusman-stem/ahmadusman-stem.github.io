@@ -33,7 +33,7 @@
             width: 210mm;
             height: 297mm;
             background: white;
-            padding: 10mm 12mm; /* Narrow margins */
+            padding: 10mm 12mm 5mm 12mm; /* 5mm bottom margin */
             position: relative;
             box-shadow: 0 0 15px rgba(0,0,0,0.3);
             display: grid;
@@ -66,7 +66,7 @@
         /* Typography & Components */
         h1 { color: var(--primary); letter-spacing: -0.02em; }
         h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 3px; margin-bottom: 10px; margin-top: 15px; }
-        h3 { color: var(--primary); font-weight: 700; font-size: 0.9rem; }
+        h3 { color: var(--primary); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; }
         
         .role-meta { color: #64748b; font-size: 0.75rem; font-weight: 500; text-align: right; white-space: nowrap; }
         .role-subtitle { color: var(--secondary); font-size: 0.8rem; font-weight: 600; margin-bottom: 2px; }
@@ -81,18 +81,32 @@
 
         /* Sidebar Styling */
         .sidebar { background-color: var(--bg-sidebar); border-radius: 8px; padding: 10px; height: 100%; font-size: 0.75rem; }
-        .sidebar-section { margin-bottom: 15px; }
-        .sidebar-title { color: var(--primary); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 2px; margin-bottom: 8px; font-size: 0.75rem; }
+        .sidebar-section { margin-bottom: 20px; } 
+        .sidebar-title { color: var(--primary); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 4px; margin-bottom: 10px; font-size: 0.75rem; margin-top: 5px; } 
         
         /* Tags */
-        .tag { display: inline-block; background: white; border: 1px solid #e2e8f0; padding: 2px 5px; border-radius: 4px; font-size: 0.65rem; margin-right: 3px; margin-bottom: 3px; font-weight: 600; color: #475569; }
+        .tag { display: inline-block; background: white; border: 1px solid #e2e8f0; padding: 2px 5px; border-radius: 4px; font-size: 0.65rem; margin-right: 3px; margin-bottom: 3px; font-weight: 600; color: #475569; text-decoration: none; transition: all 0.2s; }
+        .tag:hover { border-color: var(--accent); color: var(--accent); background-color: #f0f9ff; }
 
         /* Highlight Box */
         .highlight-box { background: #f0f9ff; border-left: 3px solid var(--accent); padding: 6px 8px; margin: 6px 0; border-radius: 0 4px 4px 0; }
         .highlight-text { font-size: 0.75rem; color: #0c4a6e; font-weight: 500; }
 
         /* Header Contact */
+        .contact-row { text-decoration: none; color: inherit; transition: color 0.2s; }
+        .contact-row:hover { color: var(--accent); }
         .contact-row i { width: 14px; text-align: center; color: var(--accent); margin-right: 4px; }
+        
+        /* Icon styles */
+        h3 i { color: var(--accent); margin-right: 8px; font-size: 0.85rem; }
+
+        /* General Link Styling */
+        a.text-link { color: inherit; text-decoration: none; border-bottom: 1px dotted #94a3b8; transition: all 0.2s; }
+        a.text-link:hover { color: var(--accent); border-bottom-style: solid; }
+        
+        /* Header Links */
+        .header-link { color: inherit; text-decoration: none; }
+        .header-link:hover { text-decoration: underline; color: var(--accent); }
     </style>
 </head>
 <body>
@@ -111,21 +125,32 @@
             <!-- Header -->
             <header class="mb-5 border-b pb-4 border-slate-200">
                 <h1 class="text-3xl font-extrabold text-slate-900 uppercase tracking-tight">Ahmad Usman</h1>
-                <p class="text-sm text-sky-700 font-bold tracking-wide mt-1">Education Systems Architect | National Olympiad Coach | Computer Scientist</p>
+                <p class="text-sm text-sky-700 font-bold tracking-wide mt-1">Education Systems Architect | National Olympiad Coach</p>
                 <div class="flex flex-wrap gap-x-4 gap-y-1 mt-3 text-xs text-slate-600 font-medium">
-                    <span class="contact-row"><i class="fas fa-envelope"></i> mail.ahmadusman@gmail.com</span>
-                    <span class="contact-row"><i class="fas fa-phone"></i> +92 321 6400328</span>
+                    <a href="mailto:mail.ahmadusman@gmail.com" class="contact-row"><i class="fas fa-envelope"></i> mail.ahmadusman@gmail.com</a>
+                    <a href="https://wa.me/923216400328" target="_blank" class="contact-row"><i class="fab fa-whatsapp"></i> +92 321 6400328</a>
                     <span class="contact-row"><i class="fas fa-map-marker-alt"></i> Lahore, Pakistan</span>
-                    <span class="contact-row"><i class="fab fa-linkedin"></i> linkedin.com/in/ahmad-usman</span>
+                    <a href="https://linkedin.com/in/ahmad-usman-5411981b7" target="_blank" class="contact-row"><i class="fab fa-linkedin"></i> linkedin.com/in/ahmad-usman</a>
                 </div>
             </header>
 
             <!-- Summary -->
             <section class="mb-4">
-                <h2 style="margin-top:0;">Executive Profile</h2>
-                <p>
-                    <strong>Education leader and policy advisor</strong> specializing in identifying and nurturing high-potential students from low-income backgrounds. Architect of Pakistan’s International Olympiad in Informatics (IOI) pipeline, leading the national team to a <strong>historic Global Rank of 31 in 2025</strong> (outperforming France & Italy). Currently advising the Government of Punjab on the "Schools for Exceptionally Talented Students" (SETS) initiative. Expert in scaling personalized learning systems (50,000+ students) using algorithmic curricula and data-driven policy frameworks.
-                </p>
+                <div class="text-xs text-slate-700 space-y-2">
+                    <p>
+                        <strong>Summary: </strong>Education leader and policy advisor bridging the gap between technology and human potential. Expert in scaling personalized learning systems and designing national frameworks for gifted education to democratize access to excellence.
+                    </p>
+                    <ul class="list-none pl-0 space-y-1">
+                        <li class="flex items-start">
+                            <span class="text-accent mr-2 font-bold">•</span>
+                            <span><strong>National Policy Advisor (SETS):</strong> Advising the <a href="https://punjab.gov.pk/" target="_blank" class="text-link">Government of Punjab</a> on the "Schools for Exceptionally Talented Students" initiative, impacting a province of 120 million people.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent mr-2 font-bold">•</span>
+                            <span><strong>Global Olympiad Leader (IOI):</strong> Architect of Pakistan’s <a href="https://ioinformatics.org/" target="_blank" class="text-link">International Olympiad in Informatics</a> pipeline. Led the national team to a <strong>historic Global Rank of 31 in 2025</strong>, outperforming developed nations like Germany, France, Italy, etc.</span>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
             <!-- Experience Section 1 -->
@@ -135,12 +160,12 @@
                 <!-- Role 1: Govt -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Government of Punjab / PEIMA</h3>
+                        <h3><i class="fas fa-landmark"></i> <a href="https://peima.punjab.gov.pk/" target="_blank" class="header-link">Government of Punjab / PEIMA</a></h3>
                         <span class="role-meta">Oct 2025 – Present</span>
                     </div>
-                    <div class="role-subtitle">Focal Person & Advisor (SETS Project)</div>
+                    <div class="role-subtitle">Advisor, Schools for Exceptionally Talented Students (SETS)</div>
                     <ul class="compact-list">
-                        <li><strong>Strategic Leadership:</strong> Spearheading the SETS initiative to establish Punjab's first magnet schools for gifted students, modeled after Iran’s NODET and Singapore’s GEP.</li>
+                        <li><strong>Strategic Leadership:</strong> Spearheading the SETS initiative to establish Pakistan's first magnet schools for gifted students.</li>
                         <li><strong>Policy Formulation:</strong> Serving on the steering committee to draft the "National Framework for Gifted Education," defining student identification metrics for a province of 120 million.</li>
                         <li><strong>Diplomacy:</strong> Orchestrated a high-level government delegation to Iran (Nov 2025) to adapt their gifted education infrastructure for Pakistan.</li>
                     </ul>
@@ -149,38 +174,34 @@
                 <!-- Role 2: SundarSTEM -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>SundarSTEM School</h3>
+                        <h3><i class="fas fa-school"></i> <a href="https://sundarstem.edu.pk/" target="_blank" class="header-link">SundarSTEM School</a></h3>
                         <span class="role-meta">Apr 2021 – Present</span>
                     </div>
                     <div class="role-subtitle">Vice Principal & Head of Computer Science</div>
-                    <div class="role-desc">Pakistan’s premier residential school for gifted students from low-income backgrounds.</div>
+                    <div class="role-desc">Pakistan’s first school for gifted students.</div>
                     <ul class="compact-list">
                         <li><strong>Olympiad Architecture:</strong> Built Pakistan’s IOI pipeline from zero. <strong>Every student representing Pakistan at the IOI to date has been my direct student.</strong></li>
                         <li><strong>Global Impact:</strong> Coached the national team to <strong>4 Bronze Medals (100% win rate)</strong> at IOI 2025 (Bolivia) and 2 Bronze at IOI 2024 (Egypt).</li>
                         <li><strong>Curriculum Design:</strong> Developed advanced CS curricula (Graph Theory, DP). My O-Level Math class achieved <strong>100% A* grades</strong>; Physics students achieved only A/A*.</li>
-                        <li><strong>International Collaboration:</strong> Recruited world-class volunteer trainers, including faculty from the <strong>University of Oxford</strong>.</li>
+                        <li><strong>International Collaboration:</strong> Recruited world-class volunteer trainers, including faculty from the <a href="https://www.ox.ac.uk/" target="_blank" class="text-link font-semibold">University of Oxford</a>.</li>
                         <li><strong>Equity:</strong> Placed students from households earning <£100/mo into top US/UK universities on full scholarships.</li>
                     </ul>
                     <div class="highlight-box">
                         <div class="highlight-text">
-                            <i class="fas fa-trophy mr-1"></i> <strong>Key Metric:</strong> IOI 2025 Rank 31 Globally | 4 Medals | Beat Germany, Italy, Turkey.
+                            <i class="fas fa-trophy mr-1"></i> <strong>Key Metric:</strong> IOI 2025 Rank 31 Globally | 4 Medals | Outperforming Germany, France, Italy, etc.
                         </div>
                     </div>
                 </div>
 
-                <!-- Role 3: VSS -->
-                <div class="mb-4">
+                 <!-- Role 3: FBISE (Moved from Page 2 to Page 1) -->
+                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Virtual STEM School (VSS)</h3>
-                        <span class="role-meta">Jun 2023 – Dec 2024</span>
+                        <h3><i class="fas fa-file-signature"></i> <a href="https://www.fbise.edu.pk/" target="_blank" class="header-link">Federal Board (FBISE)</a></h3>
+                        <span class="role-meta">2023 – Present</span>
                     </div>
-                    <div class="role-subtitle">Founding Head</div>
+                    <div class="role-subtitle">Technical Advisor, Pakistan Olympiad in Informatics</div>
                     <ul class="compact-list">
-                        <li><strong>Massive Scale:</strong> Founded Pakistan’s first online accelerator for gifted Grades 6–7. Managed entry testing for <strong>50,000+ applicants</strong>, selecting top 1,500.</li>
-                        <li><strong>Digital Equity:</strong> Secured funding to distribute <strong>1,900 Chromebooks</strong> to students in remote villages.</li>
-                        <li><strong>Partner Schools Program:</strong> Trained teachers in 300+ schools to integrate Khan Academy/Khanmigo into daily lessons.</li>
-                        <li><strong>Weekend School:</strong> Launched an intensive weekend program for the top 1% of math talent in Lahore.</li>
-                    </ul>
+                        <li><strong>Institutional Reform:</strong> Successfully lobbied FBISE to become the official IOI body. Secured Pakistan's official registration at the IOI General Assembly in Hungary (2023). Led delegations to <strong>six International Olympiads.</strong></li>                    </ul>
                 </div>
             </section>
         </main>
@@ -188,43 +209,23 @@
         <!-- Sidebar Page 1 -->
         <aside class="sidebar">
             
-            <!-- Languages (Moved to Page 1) -->
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Languages</h3>
-                <ul class="text-xs text-slate-700">
-                    <li class="mb-1"><span class="font-semibold">Urdu:</span> Native</li>
-                    <li class="mb-1"><span class="font-semibold">English:</span> Fluent (IELTS 7.5)</li>
-                    <li><span class="font-semibold">Arabic:</span> Basic</li>
-                </ul>
-            </div>
-
-            <!-- Skills -->
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Core Skills</h3>
+             <!-- Education -->
+             <div class="sidebar-section">
+                <h3 class="sidebar-title">Education</h3>
                 <div class="mb-2">
-                    <div class="font-semibold text-slate-700 mb-1">Pedagogy & Policy</div>
-                    <div class="flex flex-wrap">
-                        <span class="tag">Gifted Education</span>
-                        <span class="tag">Curriculum Design</span>
-                        <span class="tag">National Scaling</span>
-                        <span class="tag">Teacher Training</span>
-                        <span class="tag">Policy Formation</span>
-                        <span class="tag">Instructional Design</span>
+                    <div class="font-bold text-slate-800">BS Computer Science</div>
+                    <div class="text-xs text-slate-600"><a href="https://lums.edu.pk/" target="_blank" class="text-link">LUMS, Pakistan</a></div>
+                    <div class="text-xs text-slate-500 italic">2014 – 2018</div>
+                    <div class="text-xs mt-1">
+                        <strong>CGPA:</strong> 3.32 / 4.0<br>
+                        <strong>Thesis:</strong> Deep Learning for Network Security (Grade: A-).
                     </div>
                 </div>
                 <div>
-                    <div class="font-semibold text-slate-700 mb-1">Technical (CS)</div>
-                    <div class="flex flex-wrap">
-                        <span class="tag">Python</span>
-                        <span class="tag">C++ (Olympiad)</span>
-                        <span class="tag">Algorithms</span>
-                        <span class="tag">Data Structures</span>
-                        <span class="tag">Deep Learning</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">Git/GitHub</span>
-                        <span class="tag">Linux/Bash</span>
-                        <span class="tag">LaTeX</span>
-                    </div>
+                    <div class="font-bold text-slate-800">A-Levels</div>
+                    <div class="text-xs text-slate-600"><a href="https://www.beaconhouse.net/" target="_blank" class="text-link">Beaconhouse System</a></div>
+                    <div class="text-xs text-slate-500 italic">2014</div>
+                    <div class="text-xs text-slate-600 font-semibold mt-1">All As</div>
                 </div>
             </div>
 
@@ -233,32 +234,60 @@
                 <h3 class="sidebar-title">Honors & Impact</h3>
                 <ul class="list-none p-0 text-xs space-y-2 text-slate-700">
                     <li>
-                        <strong class="text-accent block">Team Leader, IOI 2025</strong>
+                        <strong class="text-accent block"><a href="https://stats.ioinformatics.org/people/8483" target="_blank" class="hover:underline">Leader, IOI 2025</a></strong>
                         Led Pakistan to Rank 31 globally (4 Bronze Medals).
                     </li>
                     <li>
-                        <strong class="text-accent block">Deputy Leader, IOI 2024</strong>
-                        Pakistan's debut participation (Rank 44).
+                        <strong class="text-accent block"><a href="https://stats.ioinformatics.org/people/8483" target="_blank" class="hover:underline">Deputy leader, IOI 2024</a></strong>
+                        Pakistan's debut participation (2 Bronze Medals, Rank 44).
                     </li>
                     <li>
-                        <strong class="text-accent block">Pan-African IO 2025</strong>
-                        Best Overall Team: 4 Gold, 2 Silver.
+                        <strong class="text-accent block">Leader, APIO 2024</strong>
+                        Pakistan's debut participation (2 Silver Medals).
                     </li>
                     <li>
-                        <strong class="text-accent block">Meta Hacker Cup 2024</strong>
+                        <strong class="text-accent block">Leader, Pan-African IO 2025</strong>
+                        Best Overall Team (4 Gold, 2 Silver).
+                    </li>
+                    <li>
+                        <strong class="text-accent block"><a href="https://www.facebook.com/codingcompetitions/hacker-cup" target="_blank" class="hover:underline">Meta Hacker Cup 2024</a></strong>
                         6 of Pakistan's Top 10 were my students.
                     </li>
                 </ul>
             </div>
-            
-             <!-- Snapshot -->
-             <div class="sidebar-section">
-                <h3 class="sidebar-title">Snapshot</h3>
-                <div class="text-xs text-slate-700 space-y-1">
-                    <div><strong>DOB:</strong> 16 June 1994</div>
-                    <div><strong>Citizenship:</strong> Pakistani</div>
-                    <div><strong>Relocation:</strong> Open</div>
+
+            <!-- Tools (Moved & Refined) -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Tools & Platforms</h3>
+                <div class="mb-2">
+                    <div class="font-semibold text-slate-700 text-[0.7rem] mb-1">EdTech & AI</div>
+                    <div class="flex flex-wrap">
+                        <a href="https://www.khanacademy.org/khan-labs" target="_blank" class="tag">Khanmigo (AI)</a>
+                        <a href="https://www.khanacademy.org/" target="_blank" class="tag">Khan Academy</a>
+                        <span class="tag">LMS Analytics</span>
+                        <a href="https://www.geogebra.org/" target="_blank" class="tag">GeoGebra</a>
+                        <a href="https://www.desmos.com/" target="_blank" class="tag">Desmos</a>
+                    </div>
                 </div>
+                <div>
+                    <div class="font-semibold text-slate-700 text-[0.7rem] mb-1">Dev & Infrastructure</div>
+                    <div class="flex flex-wrap">
+                        <a href="https://www.docker.com/" target="_blank" class="tag">Docker</a>
+                        <a href="https://github.com/" target="_blank" class="tag">Git/GitHub</a>
+                        <a href="https://cms.ioi-contest.org/" target="_blank" class="tag">CMS (Contest Mgmt)</a>
+                        <a href="https://workspace.google.com/" target="_blank" class="tag">Google Workspace</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Languages</h3>
+                <ul class="text-xs text-slate-700">
+                    <li class="mb-1"><span class="font-semibold">Urdu:</span> Native</li>
+                    <li class="mb-1"><span class="font-semibold">English:</span> Fluent (IELTS 7.5)</li>
+                    <li><span class="font-semibold">Arabic:</span> Basic</li>
+                </ul>
             </div>
         </aside>
     </div>
@@ -271,66 +300,69 @@
             <section class="mb-4">
                 <h2 style="margin-top:0;">Experience (Continued)</h2>
 
-                <!-- Role 4: FBISE -->
+                <!-- Role 4: VSS (Moved from Page 1 to Page 2) -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Federal Board (FBISE)</h3>
-                        <span class="role-meta">2023 – Present</span>
+                        <h3><i class="fas fa-laptop-code"></i> Virtual STEM School (VSS)</h3>
+                        <span class="role-meta">Jun 2023 – Dec 2024</span>
                     </div>
-                    <div class="role-subtitle">Technical Advisor, Pakistan Olympiad in Informatics</div>
+                    <div class="role-subtitle">Founding Head</div>
                     <ul class="compact-list">
-                        <li><strong>Institutional Reform:</strong> Successfully lobbied FBISE to become the official IOI body. Secured Pakistan's official registration at the IOI General Assembly in Hungary (2023).</li>
-                        <li><strong>Regional Dominance:</strong> Led delegations to record victories at Pan-African (Best Overall) and North African Olympiads (2nd Overall).</li>
+                        <li><strong>Massive Scale:</strong> Founded Pakistan’s first online accelerator for gifted Grades 6–7. Managed entry testing for <strong>50,000+ applicants</strong>, selecting top 1,500.</li>
+                        <li><strong>Digital Equity:</strong> Secured funding and distributed <strong>1,900 Chromebooks</strong> to students in remote villages for online classes.</li>
+                        <li><strong>Partner Schools Program:</strong> Trained teachers in 300+ schools to integrate Khan Academy/Khanmigo into daily lessons.</li>
+                        <li><strong>Weekend School:</strong> Launched an intensive weekend program for the top 1% of math talent in Lahore.</li>
                     </ul>
                 </div>
 
                 <!-- Role 5: Pak STEM -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Pakistan STEM Schools</h3>
+                        <h3><i class="fas fa-network-wired"></i> <a href="https://baitussalam.org/" target="_blank" class="header-link">Pakistan STEM Schools</a></h3>
                         <span class="role-meta">2024 – Present</span>
                     </div>
                     <div class="role-subtitle">Head, Academic Advisory Council (Pro Bono)</div>
                     <ul class="compact-list">
-                        <li>Advise on curriculum and teacher quality for a welfare-backed school network expanding to Karachi, Lahore, and Islamabad.</li>
-                        <li>Aligning curricula with federal standards while maintaining deep problem-solving rigor.</li>
+                        <li>Advise on curriculum and teacher quality for a welfare-backed school network expanding to Karachi, Lahore, and Islamabad. Aligning curricula with federal standards while maintaining deep problem-solving rigor.</li>
                     </ul>
                 </div>
 
                 <!-- Role 6: Baitussalam -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Baitussalam Educational Complex</h3>
-                        <span class="role-meta">Jun 2020 – Mar 2021</span>
+                        <h3><i class="fas fa-hand-holding-heart"></i> <a href="https://baitussalam.org/" target="_blank" class="header-link">Baitussalam Educational Complex</a></h3>
+                        <span class="role-meta">Apr 2020 – Mar 2021</span>
                     </div>
                     <div class="role-subtitle">Head of Computer Science</div>
                     <ul class="compact-list">
-                        <li>Transformed CS education at a welfare school, introducing the first structured coding/robotics curriculum for underprivileged students.</li>
-                        <li>Guided students with zero background to their first competitive programming contests.</li>
+                        <li>Introduced the first structured coding curriculum.</li>
+                        <li>Guided underprivileged students to their first competitive programming contests, bridging the digital divide.</li>
+                        <li><strong>Legacy of Impact:</strong> Cultivated a lasting relationship with leadership and later convinced them to invest <strong>millions</strong> in launching three new dedicated STEM schools (Karachi, Lahore, Islamabad).</li>
                     </ul>
                 </div>
 
                 <!-- Role 7: Curiosity Club -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Curiosity Club</h3>
+                        <h3><i class="fas fa-robot"></i> Curiosity Club</h3>
                         <span class="role-meta">Jan 2019 – Mar 2020</span>
                     </div>
                     <div class="role-subtitle">Co-Founder</div>
                     <ul class="compact-list">
-                        <li>Co-founded an after-school robotics institute teaching programming and robotics to students from Grades 6 to 10.</li>
+                        <li>Co-founded an after-school robotics institute. Taught programming and robotics to students from Grades 6 to 10.</li>
                     </ul>
                 </div>
 
                 <!-- Role 8: ITU -->
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline">
-                        <h3>Information Technology University (ITU)</h3>
+                        <h3><i class="fas fa-microscope"></i> <a href="https://itu.edu.pk/" target="_blank" class="header-link">Information Technology University (ITU)</a></h3>
                         <span class="role-meta">Sep 2018 – Dec 2018</span>
                     </div>
                     <div class="role-subtitle">Research Associate</div>
                     <ul class="compact-list">
-                        <li>Conducted research on NLP/Digital Humanities. Teaching Assistant for undergraduate Urdu courses.</li>
+                        <li>Conducted research on Probabilistic Programming.</li>
+                        <li>Teaching Assistant for the undergraduate <strong>Urdu</strong> course.</li>
                     </ul>
                 </div>
             </section>
@@ -357,7 +389,7 @@
                 <div class="mb-0">
                     <div class="font-bold text-sm text-slate-800">"Peoples' Choice: Player Popularity via Twitter Sentiment"</div>
                     <p class="text-xs">
-                        Conducted sentiment analysis on 6.6 million tweets from the 2015 Cricket World Cup. Identified linguistic bias in standard NLP tools when processing Roman Urdu/Hindi.
+                        Analyzed 6.6 million tweets from 9 matches of the 2015 Cricket World Cup to assess player popularity. Found a slight positive correlation (0.141 average) between Twitter sentiment and player performance, with variations based on tweet volume and match-specific factors.
                     </p>
                 </div>
             </section>
@@ -365,22 +397,34 @@
 
         <!-- Sidebar Page 2 -->
         <aside class="sidebar">
-             <!-- Education (Moved to Page 2 Sidebar) -->
-             <div class="sidebar-section">
-                <h3 class="sidebar-title">Education</h3>
+            
+            <!-- Skills -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Core Skills</h3>
                 <div class="mb-2">
-                    <div class="font-bold text-slate-800">BS Computer Science</div>
-                    <div class="text-xs text-slate-600">LUMS, Pakistan</div>
-                    <div class="text-xs text-slate-500 italic">2014 – 2018</div>
-                    <div class="text-xs mt-1">
-                        <strong>CGPA:</strong> 3.32 / 4.0<br>
-                        <strong>Thesis:</strong> Deep Learning for Network Security (Grade: A-).
+                    <div class="font-semibold text-slate-700 mb-1">Pedagogy & Policy</div>
+                    <div class="flex flex-wrap">
+                        <span class="tag">Gifted Education</span>
+                        <span class="tag">Curriculum Design</span>
+                        <span class="tag">National Scaling</span>
+                        <span class="tag">Teacher Training</span>
+                        <span class="tag">Policy Formation</span>
+                        <span class="tag">Instructional Design</span>
                     </div>
                 </div>
                 <div>
-                    <div class="font-bold text-slate-800">A-Levels</div>
-                    <div class="text-xs text-slate-600">Beaconhouse System</div>
-                    <div class="text-xs text-slate-500 italic">2014</div>
+                    <div class="font-semibold text-slate-700 mb-1">Technical (CS)</div>
+                    <div class="flex flex-wrap">
+                        <a href="https://www.python.org/" target="_blank" class="tag">Python</a>
+                        <a href="https://isocpp.org/" target="_blank" class="tag">C++ (Olympiad)</a>
+                        <span class="tag">Algorithms</span>
+                        <span class="tag">Data Structures</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">SQL</span>
+                        <a href="https://git-scm.com/" target="_blank" class="tag">Git/GitHub</a>
+                        <span class="tag">Linux/Bash</span>
+                        <a href="https://www.latex-project.org/" target="_blank" class="tag">LaTeX</a>
+                    </div>
                 </div>
             </div>
 
@@ -389,7 +433,7 @@
                 <h3 class="sidebar-title">References</h3>
                 
                 <div class="mb-3">
-                    <p class="font-bold text-xs text-slate-900">Dr. Amir Goharshady</p>
+                    <a href="https://www.cs.ox.ac.uk/people/amir.goharshady/" target="_blank" class="font-bold text-xs text-slate-900 hover:text-accent hover:underline">Dr. Amir Goharshady</a>
                     <p class="text-[10px] text-slate-600">Associate Professor</p>
                     <p class="text-[10px] text-slate-600 italic">University of Oxford</p>
                     <a href="mailto:amir.goharshady@cs.ox.ac.uk" class="text-[10px] text-sky-700 hover:underline break-words">amir.goharshady@cs.ox.ac.uk</a>
@@ -398,36 +442,22 @@
                 <div class="mb-3">
                     <p class="font-bold text-xs text-slate-900">Muhammad Ishaq</p>
                     <p class="text-[10px] text-slate-600">Principal</p>
-                    <p class="text-[10px] text-slate-600 italic">SundarSTEM School</p>
-                    <a href="mailto:muhammad.ishaq@sundarstem.edu.pk" class="text-[10px] text-sky-700 hover:underline break-words">muhammad.ishaq@sundarstem.edu.pk</a>
+                    <a href="https://sundarstem.edu.pk/" target="_blank" class="text-[10px] text-slate-600 italic hover:text-accent">SundarSTEM School</a>
+                    <a href="mailto:muhammad.ishaq@sundarstem.edu.pk" class="text-[10px] text-sky-700 hover:underline break-words block mt-0.5">muhammad.ishaq@sundarstem.edu.pk</a>
                 </div>
 
                 <div class="mb-3">
                     <p class="font-bold text-xs text-slate-900">Dr. Tehmina Aslam Ranjha</p>
                     <p class="text-[10px] text-slate-600">Administrator</p>
-                    <p class="text-[10px] text-slate-600 italic">SundarSTEM School</p>
-                    <a href="mailto:tehmina@sundarstem.edu.pk" class="text-[10px] text-sky-700 hover:underline break-words">tehmina@sundarstem.edu.pk</a>
+                    <a href="https://sundarstem.edu.pk/" target="_blank" class="text-[10px] text-slate-600 italic hover:text-accent">SundarSTEM School</a>
+                    <a href="mailto:tehmina@sundarstem.edu.pk" class="text-[10px] text-sky-700 hover:underline break-words block mt-0.5">tehmina@sundarstem.edu.pk</a>
                 </div>
 
                 <div class="mb-3">
                     <p class="font-bold text-xs text-slate-900">Zeeshan Abbasi</p>
                     <p class="text-[10px] text-slate-600">Deputy Director</p>
-                    <p class="text-[10px] text-slate-600 italic">Pakistan STEM School</p>
-                    <a href="mailto:zeeshan.abbasi@baitussalam.org" class="text-[10px] text-sky-700 hover:underline break-words">zeeshan.abbasi@baitussalam.org</a>
-                </div>
-            </div>
-            
-            <!-- Tools -->
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Tools</h3>
-                <div class="flex flex-wrap">
-                    <span class="tag">Khan Academy</span>
-                    <span class="tag">Khanmigo</span>
-                    <span class="tag">LMS Analytics</span>
-                    <span class="tag">Google Workspace</span>
-                    <span class="tag">Desmos</span>
-                    <span class="tag">GeoGebra</span>
-                    <span class="tag">Docker</span>
+                    <a href="https://baitussalam.org/" target="_blank" class="text-[10px] text-slate-600 italic hover:text-accent">Pakistan STEM School</a>
+                    <a href="mailto:zeeshan.abbasi@baitussalam.org" class="text-[10px] text-sky-700 hover:underline break-words block mt-0.5">zeeshan.abbasi@baitussalam.org</a>
                 </div>
             </div>
 
@@ -437,6 +467,16 @@
                 <div class="text-xs text-slate-700 space-y-1">
                     <div><i class="fas fa-plane text-accent mr-1"></i> <strong>Travel:</strong> 13 Countries, 120+ Cities.</div>
                     <div><i class="fas fa-bullseye text-accent mr-1"></i> <strong>Archery:</strong> Training to go pro.</div>
+                </div>
+            </div>
+            
+             <!-- Snapshot -->
+             <div class="sidebar-section">
+                <h3 class="sidebar-title">Personal Details</h3>
+                <div class="text-xs text-slate-700 space-y-1">
+                    <div><strong>DOB:</strong> 16 June 1994</div>
+                    <div><strong>Citizenship:</strong> Pakistani</div>
+                    <div><strong>Relocation:</strong> Open</div>
                 </div>
             </div>
 
