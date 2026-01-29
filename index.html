@@ -8,106 +8,116 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #0f172a; /* Slate 900 */
-            --secondary: #334155; /* Slate 700 */
-            --accent: #0369a1; /* Sky 700 */
-            --bg-sidebar: #f8fafc;
-            --border-color: #cbd5e1;
-        }
+    :root {
+        --primary: #0f172a; /* Slate 900 */
+        --secondary: #334155; /* Slate 700 */
+        --accent: #0369a1; /* Sky 700 */
+        --bg-sidebar: #f8fafc;
+        --border-color: #cbd5e1;
+    }
 
+    body {
+        background-color: #525252;
+        font-family: 'Inter', sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    /* A4 Paper Configuration */
+    .page {
+        width: 210mm;
+        height: 297mm;
+        background: white;
+        padding: 10mm 12mm 5mm 12mm;
+        position: relative;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        display: grid;
+        grid-template-columns: 68% 30%; /* Main Content vs Sidebar */
+        gap: 2%;
+        overflow: hidden; /* Keeps screen view clean */
+    }
+
+    /* Print Settings - THE FIX IS HERE */
+    @media print {
+        @page {
+            margin: 0; /* Removes default browser margins */
+            size: A4;
+        }
         body {
-            background-color: #525252;
-            font-family: 'Inter', sans-serif;
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            gap: 20px;
+            background: none;
+            padding: 0;
+            gap: 0;
+            display: block;
         }
-
-        /* A4 Paper Configuration */
         .page {
-            width: 210mm;
+            box-shadow: none;
+            margin: 0;
+            page-break-after: always;
             height: 297mm;
-            background: white;
-            padding: 10mm 12mm 5mm 12mm; /* 5mm bottom margin */
-            position: relative;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            display: grid;
-            grid-template-columns: 68% 30%; /* Main Content vs Sidebar */
-            gap: 2%;
-            overflow: hidden; /* Prevent spillover */
+            width: 100%;
+            /* CRITICAL FIX: Ensures browser renders text as vectors, not image */
+            overflow: visible !important; 
+            print-color-adjust: exact;
         }
-
-        /* Print Settings */
-        @media print {
-            body {
-                background: none;
-                padding: 0;
-                gap: 0;
-                display: block;
-            }
-            .page {
-                box-shadow: none;
-                margin: 0;
-                page-break-after: always;
-                height: 297mm; /* Force A4 height */
-                width: 100%;
-            }
-            .page:last-child {
-                page-break-after: auto;
-            }
-            .no-print { display: none !important; }
+        .page:last-child {
+            page-break-after: auto;
         }
-
-        /* Typography & Components */
-        h1 { color: var(--primary); letter-spacing: -0.02em; }
-        h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 3px; margin-bottom: 10px; margin-top: 15px; }
-        h3 { color: var(--primary); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; }
+        .no-print { display: none !important; }
         
-        .role-meta { color: #64748b; font-size: 0.75rem; font-weight: 500; text-align: right; white-space: nowrap; }
-        .role-subtitle { color: var(--secondary); font-size: 0.8rem; font-weight: 600; margin-bottom: 2px; }
-        .role-desc { font-size: 0.75rem; color: #475569; margin-bottom: 4px; font-style: italic; line-height: 1.3; }
+        /* Optional: Improves link readability in print */
+        a { text-decoration: none; color: inherit; }
+    }
 
-        p, li { font-size: 0.8rem; line-height: 1.45; color: #334155; text-align: justify; }
-        
-        /* Bullet Lists */
-        .compact-list { list-style: none; padding: 0; }
-        .compact-list li { position: relative; padding-left: 10px; margin-bottom: 2px; }
-        .compact-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+    /* Typography & Components */
+    h1 { color: var(--primary); letter-spacing: -0.02em; }
+    h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 3px; margin-bottom: 10px; margin-top: 15px; }
+    h3 { color: var(--primary); font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; }
+    
+    .role-meta { color: #64748b; font-size: 0.75rem; font-weight: 500; text-align: right; white-space: nowrap; }
+    .role-subtitle { color: var(--secondary); font-size: 0.8rem; font-weight: 600; margin-bottom: 2px; }
+    .role-desc { font-size: 0.75rem; color: #475569; margin-bottom: 4px; font-style: italic; line-height: 1.3; }
 
-        /* Sidebar Styling */
-        .sidebar { background-color: var(--bg-sidebar); border-radius: 8px; padding: 10px; height: 100%; font-size: 0.75rem; }
-        .sidebar-section { margin-bottom: 20px; } 
-        .sidebar-title { color: var(--primary); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 4px; margin-bottom: 10px; font-size: 0.75rem; margin-top: 5px; } 
-        
-        /* Tags */
-        .tag { display: inline-block; background: white; border: 1px solid #e2e8f0; padding: 2px 5px; border-radius: 4px; font-size: 0.65rem; margin-right: 3px; margin-bottom: 3px; font-weight: 600; color: #475569; text-decoration: none; transition: all 0.2s; }
-        .tag:hover { border-color: var(--accent); color: var(--accent); background-color: #f0f9ff; }
+    p, li { font-size: 0.8rem; line-height: 1.45; color: #334155; text-align: justify; }
+    
+    /* Bullet Lists */
+    .compact-list { list-style: none; padding: 0; }
+    .compact-list li { position: relative; padding-left: 10px; margin-bottom: 2px; }
+    .compact-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
 
-        /* Highlight Box */
-        .highlight-box { background: #f0f9ff; border-left: 3px solid var(--accent); padding: 6px 8px; margin: 6px 0; border-radius: 0 4px 4px 0; }
-        .highlight-text { font-size: 0.75rem; color: #0c4a6e; font-weight: 500; }
+    /* Sidebar Styling */
+    .sidebar { background-color: var(--bg-sidebar); border-radius: 8px; padding: 10px; height: 100%; font-size: 0.75rem; }
+    .sidebar-section { margin-bottom: 20px; } 
+    .sidebar-title { color: var(--primary); font-weight: 700; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 4px; margin-bottom: 10px; font-size: 0.75rem; margin-top: 5px; } 
+    
+    /* Tags */
+    .tag { display: inline-block; background: white; border: 1px solid #e2e8f0; padding: 2px 5px; border-radius: 4px; font-size: 0.65rem; margin-right: 3px; margin-bottom: 3px; font-weight: 600; color: #475569; text-decoration: none; transition: all 0.2s; }
+    .tag:hover { border-color: var(--accent); color: var(--accent); background-color: #f0f9ff; }
 
-        /* Header Contact */
-        .contact-row { text-decoration: none; color: inherit; transition: color 0.2s; }
-        .contact-row:hover { color: var(--accent); }
-        .contact-row i { width: 14px; text-align: center; color: var(--accent); margin-right: 4px; }
-        
-        /* Icon styles */
-        h3 i { color: var(--accent); margin-right: 8px; font-size: 0.85rem; }
+    /* Highlight Box */
+    .highlight-box { background: #f0f9ff; border-left: 3px solid var(--accent); padding: 6px 8px; margin: 6px 0; border-radius: 0 4px 4px 0; }
+    .highlight-text { font-size: 0.75rem; color: #0c4a6e; font-weight: 500; }
 
-        /* General Link Styling */
-        a.text-link { color: inherit; text-decoration: none; border-bottom: 1px dotted #94a3b8; transition: all 0.2s; }
-        a.text-link:hover { color: var(--accent); border-bottom-style: solid; }
-        
-        /* Header Links */
-        .header-link { color: inherit; text-decoration: none; }
-        .header-link:hover { text-decoration: underline; color: var(--accent); }
-    </style>
+    /* Header Contact */
+    .contact-row { text-decoration: none; color: inherit; transition: color 0.2s; }
+    .contact-row:hover { color: var(--accent); }
+    .contact-row i { width: 14px; text-align: center; color: var(--accent); margin-right: 4px; }
+    
+    /* Icon styles */
+    h3 i { color: var(--accent); margin-right: 8px; font-size: 0.85rem; }
+
+    /* General Link Styling */
+    a.text-link { color: inherit; text-decoration: none; border-bottom: 1px dotted #94a3b8; transition: all 0.2s; }
+    a.text-link:hover { color: var(--accent); border-bottom-style: solid; }
+    
+    /* Header Links */
+    .header-link { color: inherit; text-decoration: none; }
+    .header-link:hover { text-decoration: underline; color: var(--accent); }
+</style>
 </head>
 <body>
 
